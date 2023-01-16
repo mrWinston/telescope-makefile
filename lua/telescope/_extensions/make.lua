@@ -48,7 +48,7 @@ local function get_targets()
      if  config.default_target then
         table.insert(targets, config.default_target)
      end
-    return table.merge(targets, vim.split(string.sub(data, 1, #data - 1), '\n'))
+    return vim.tbl_extend("force", targets, vim.split(data, '\n', {trimempty=true}))
 end
 
 local function run_target(cmd)
